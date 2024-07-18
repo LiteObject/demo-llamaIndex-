@@ -21,6 +21,7 @@ try:
         model_name="BAAI/bge-base-en-v1.5")
     Settings.llm = Ollama(model="llama3", request_timeout=360.0)
 
+     # Load all the text files from the specified "data" directory into a list of Document objects.
     documents = SimpleDirectoryReader("data").load_data()
     index = VectorStoreIndex.from_documents(documents)
     query_engine = index.as_query_engine()
