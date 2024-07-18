@@ -30,7 +30,7 @@ except Exception as e:
 while True:
     # Get the question from the user
     user_question = input(
-        Color.LIGHT_BLUE + "Please enter your question (or 'quit' to exit):" + Color.reset() + "\n")
+        Color.LIGHT_BLUE + "Please enter your question (or type 'quit' to exit):" + Color.reset() + "\n")
 
     # Check if the user wants to quit
     if user_question.lower() in ['quit', 'qq', 'bye', 'exit']:
