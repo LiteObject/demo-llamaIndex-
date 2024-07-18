@@ -12,7 +12,8 @@ try:
     # Start the spinner
     spinner.start()
     # bge-base embedding model
-    Settings.embed_model = HuggingFaceEmbedding(model_name="BAAI/bge-base-en-v1.5")
+    Settings.embed_model = HuggingFaceEmbedding(
+        model_name="BAAI/bge-base-en-v1.5")
     Settings.llm = Ollama(model="llama3", request_timeout=360.0)
 
     documents = SimpleDirectoryReader("data").load_data()
@@ -28,7 +29,8 @@ except Exception as e:
 
 while True:
     # Get the question from the user
-    user_question = input(Color.LIGHT_BLUE + "Please enter your question (or 'quit' to exit):" + Color.reset() + "\n")
+    user_question = input(
+        Color.LIGHT_BLUE + "Please enter your question (or 'quit' to exit):" + Color.reset() + "\n")
 
     # Check if the user wants to quit
     if user_question.lower() in ['quit', 'qq', 'bye', 'exit']:
