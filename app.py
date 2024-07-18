@@ -5,6 +5,11 @@ from halo import Halo
 
 from color import Color
 
+
+def console_print(message: str, color_name: str = Color.WHITE) -> None:
+    print(color_name + message + Color.reset())
+
+
 # Create a spinner
 spinner = Halo(text='Loading', spinner='dots')
 
@@ -20,12 +25,13 @@ try:
     index = VectorStoreIndex.from_documents(documents)
     query_engine = index.as_query_engine()
     spinner.stop()
-    print(Color.LIGHT_GRAY + "The database is up to date." + Color.reset())
+    console_print("The database is up to date.", Color.LIGHT_GRAY)
 
     # response = query_engine.query("Who is Byte?")
     # print(response)
-except Exception as e:
-    spinner.fail(f"Task failed: {e}")
+except (ValueError, TypeError) as e:
+    spinner.fail()
+    console_print(f"Task failed: {e}", Color.RED)
 
 while True:
     # Get the question from the user
@@ -44,6 +50,6 @@ while True:
     spinner.stop()
 
     # Print the response
-    print(Color.CYAN + str(response) + Color.reset() + "\n")
+    console_print(str(response) + "\n", Color.CYAN)
 
-print(Color.LIGHT_GRAY + "\nThank you for using the query engine!\n" + Color.reset())
+console_print("Thank you for using the query engine!\n", Color.LIGHT_GRAY)
